@@ -17,12 +17,12 @@ services:
       - 1.0.0.1
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./data:/data
       - ./config:/config
       - ./downloads:/downloads
     environment:
       - NORDVPN_USERNAME
       - NORDVPN_PASSWORD
+      - OPENPYN_NOVPN=true
       - OPENPYN_COUNTRY=nl
       - PUID=1000
       - PGID=1000

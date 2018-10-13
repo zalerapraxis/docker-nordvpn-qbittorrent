@@ -12,6 +12,15 @@ mkdir -p \
 # initialize openpyn
 /openpyn/openpyn_init.exp
 
+if [[ -z $OPENPYN_NOVPN ]]; then
+    mkdir -p /etc/services.d/openpyn/
+    cp /openpyn/run /etc/services.d/openpyn/
+else
+    # No VPN connection wanted, just setting the Socks5 proxy
+    # getting the best server at the moment
+    /openpyn/openpyn_setbestserver.exp
+fi
+
 # permissions
 chown -R abc:abc \
 	/config
