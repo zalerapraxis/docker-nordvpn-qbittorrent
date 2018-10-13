@@ -4,7 +4,7 @@
 [openpynurl]: https://github.com/jotyGill/openpyn-nordvpn/
 
 Based on the [LinuxServer.io][linuxserverurl] image for qbittorrent and [openpyn-nordvpn][openpynurl].
-This create a docker with a qBittorrent instance running with the web-ui with all the traffic passing through an OpenVPN server of NordVPN and using the Socks5 protocol with the same server
+This create a docker with a qBittorrent instance running with the web-ui and all the traffic double encrypted: passing through an OpenVPN server of NordVPN and using the Socks5 protocol of the same server.
 
 # omegagoth/nordvpn-qbittorrent
 [![](https://images.microbadger.com/badges/version/omegagoth/nordvpn-qbittorrent.svg)](https://microbadger.com/images/omegagoth/nordvpn-qbittorrent "Get your own version badge on microbadger.com")
@@ -23,7 +23,7 @@ The [openpyn-nordvpn][openpynurl] aims to provide an easy connection and switch 
 
 ```
 docker create \
-  --name=openpyn-qbittorrent \
+  --name=nordvpn-qbittorrent \
   -v <path to config>:/config \
   -v <path to downloads>:/downloads \
   -v /etc/localtime:/etc/localtime:ro \
@@ -37,7 +37,7 @@ docker create \
   -p 6881:6881 \
   -p 6881:6881/udp \
   -p 8080:8080 \
-  linuxserver/qbittorrent
+  omegagoth/nordvpn-qbittorrent
 ```
 
 ## Parameters
@@ -59,7 +59,7 @@ http://192.168.x.x:8080 would show you what's running INSIDE the container on po
 * `-e UMASK_SET` for umask setting of qbittorrent, *optional* , default if left unset is 022. 
 * `-e WEBUI_PORT` for changing the port of the webui, see below for explanation
 
-It is based on alpine linux with s6 overlay, for shell access whilst the container is running do `docker exec -it openpyn-qbittorrent /bin/bash`.
+It is based on alpine linux with s6 overlay, for shell access whilst the container is running do `docker exec -it nordvpn-qbittorrent /bin/bash`.
 
 ## WEBUI_PORT variable
 
@@ -99,17 +99,17 @@ Change username/password via the webui in the webui section of settings.
 
 ## Info
 
-Shell access whilst the container is running: `docker exec -it openpyn-qbittorrent /bin/bash`
+Shell access whilst the container is running: `docker exec -it nordvpn-qbittorrent /bin/bash`
 
-To monitor the logs of the container in realtime: `docker logs -f openpyn-qbittorrent`
+To monitor the logs of the container in realtime: `docker logs -f nordvpn-qbittorrent`
 
 * container version number 
 
-`docker inspect -f '{{ index .Config.Labels "build_version" }}' openpyn-qbittorrent`
+`docker inspect -f '{{ index .Config.Labels "build_version" }}' nordvpn-qbittorrent`
 
 * image version number
 
-`docker inspect -f '{{ index .Config.Labels "build_version" }}' omegagoth/openpyn-qbittorrent`
+`docker inspect -f '{{ index .Config.Labels "build_version" }}' omegagoth/nordvpn-qbittorrent`
 
 ## Versions
 
