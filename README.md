@@ -1,16 +1,16 @@
 [linuxserverurl]: https://linuxserver.io
-[forumurl]: https://forum.linuxserver.io
-[ircurl]: https://www.linuxserver.io/irc/
-[podcasturl]: https://www.linuxserver.io/podcast/
 [appurl]: https://www.qbittorrent.org
-[hub]: https://hub.docker.com/r/linuxserver/qbittorrent/
+[hub]: https://hub.docker.com/r/omegagoth/nordvpn-qbittorrent/
 [openpynurl]: https://github.com/jotyGill/openpyn-nordvpn/
 
 Based on the [LinuxServer.io][linuxserverurl] image for qbittorrent and [openpyn-nordvpn][openpynurl].
 This create a docker with a qBittorrent instance running with the web-ui with all the traffic passing through an OpenVPN server of NordVPN and using the Socks5 protocol with the same server
 
-# omegagoth/openpyn-qbittorrent
-[![](https://images.microbadger.com/badges/version/linuxserver/qbittorrent.svg)](https://microbadger.com/images/linuxserver/qbittorrent "Get your own version badge on microbadger.com")[![](https://images.microbadger.com/badges/image/linuxserver/qbittorrent.svg)](https://microbadger.com/images/linuxserver/qbittorrent "Get your own image badge on microbadger.com")[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/qbittorrent.svg)][hub][![Docker Stars](https://img.shields.io/docker/stars/linuxserver/qbittorrent.svg)][hub][![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Builders/x86-64/x86-64-qbittorrent)](https://ci.linuxserver.io/job/Docker-Builders/job/x86-64/job/x86-64-qbittorrent/)
+# omegagoth/nordvpn-qbittorrent
+[![](https://images.microbadger.com/badges/version/omegagoth/nordvpn-qbittorrent.svg)](https://microbadger.com/images/omegagoth/nordvpn-qbittorrent "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/omegagoth/nordvpn-qbittorrent.svg)](https://microbadger.com/images/omegagoth/nordvpn-qbittorrent "Get your own image badge on microbadger.com")
+[![Docker Pulls](https://img.shields.io/docker/pulls/omegagoth/nordvpn-qbittorrent.svg)][hub]
+[![Docker Stars](https://img.shields.io/docker/stars/omegagoth/nordvpn-qbittorrent.svg)][hub]
 
 The [qBittorrent][appurl] project aims to provide an open-source software alternative to µTorrent.
 qBittorrent is based on the Qt toolkit and libtorrent-rasterbar library.
