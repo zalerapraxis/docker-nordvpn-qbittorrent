@@ -4,15 +4,12 @@
 [podcasturl]: https://www.linuxserver.io/podcast/
 [appurl]: https://www.qbittorrent.org
 [hub]: https://hub.docker.com/r/linuxserver/qbittorrent/
+[openpynurl]: https://github.com/jotyGill/openpyn-nordvpn/
 
-[![linuxserver.io](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver_medium.png)][linuxserverurl]
+Based on the [LinuxServer.io][linuxserverurl] image for qbittorrent and [openpyn-nordvpn][openpynurl].
+This create a docker with a qBittorrent instance running with the web-ui with all the traffic passing through an OpenVPN server of NordVPN and using the Socks5 protocol with the same server
 
-The [LinuxServer.io][linuxserverurl] team brings you another container release featuring easy user mapping and community support. Find us for support at:
-* [forum.linuxserver.io][forumurl]
-* [IRC][ircurl] on freenode at `#linuxserver.io`
-* [Podcast][podcasturl] covers everything to do with getting the most from your Linux Server plus a focus on all things Docker and containerisation!
-
-# linuxserver/qbittorrent
+# omegagoth/openpyn-qbittorrent
 [![](https://images.microbadger.com/badges/version/linuxserver/qbittorrent.svg)](https://microbadger.com/images/linuxserver/qbittorrent "Get your own version badge on microbadger.com")[![](https://images.microbadger.com/badges/image/linuxserver/qbittorrent.svg)](https://microbadger.com/images/linuxserver/qbittorrent "Get your own image badge on microbadger.com")[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/qbittorrent.svg)][hub][![Docker Stars](https://img.shields.io/docker/stars/linuxserver/qbittorrent.svg)][hub][![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Builders/x86-64/x86-64-qbittorrent)](https://ci.linuxserver.io/job/Docker-Builders/job/x86-64/job/x86-64-qbittorrent/)
 
 The [qBittorrent][appurl] project aims to provide an open-source software alternative to µTorrent.
@@ -20,17 +17,23 @@ qBittorrent is based on the Qt toolkit and libtorrent-rasterbar library.
 
 [![qbittorrent](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/qbittorrent-icon.png)][appurl]
 
+The [openpyn-nordvpn][openpynurl] aims to provide an easy connection and switch between, OpenVPN servers hosted by NordVPN on Linux.
+
 ## Usage
 
 ```
 docker create \
-  --name=qbittorrent \
+  --name=openpyn-qbittorrent \
   -v <path to config>:/config \
   -v <path to downloads>:/downloads \
+  -v /etc/localtime:/etc/localtime:ro \
   -e PGID=<gid> -e PUID=<uid>  \
   -e UMASK_SET=<022> \
   -e WEBUI_PORT=<8080> \
-  -e TZ=<timezone> \
+  -e NORDVPN_USERNAME=<username>
+  -e NORDVPN_PASSWORD=<password>
+  -e OPENPYN_SERVERNUMBER=<5>
+  -e OPENPYN_COUNTRY=<nl>
   -p 6881:6881 \
   -p 6881:6881/udp \
   -p 8080:8080 \
@@ -50,13 +53,13 @@ http://192.168.x.x:8080 would show you what's running INSIDE the container on po
 * `-p 8080` - webui port 
 * `-v /config` - where qbittorrent should store its config files
 * `-v /downloads` - path to downloads
+* `-v /etc/localtime` - path to the localtime directory of your local OS
 * `-e PGID` for GroupID - see below for explanation
 * `-e PUID` for UserID - see below for explanation
 * `-e UMASK_SET` for umask setting of qbittorrent, *optional* , default if left unset is 022. 
 * `-e WEBUI_PORT` for changing the port of the webui, see below for explanation
-* `-e TZ` for timezone information, eg Europe/London
 
-It is based on alpine linux with s6 overlay, for shell access whilst the container is running do `docker exec -it qbittorrent /bin/bash`.
+It is based on alpine linux with s6 overlay, for shell access whilst the container is running do `docker exec -it openpyn-qbittorrent /bin/bash`.
 
 ## WEBUI_PORT variable
 
@@ -96,29 +99,18 @@ Change username/password via the webui in the webui section of settings.
 
 ## Info
 
-Shell access whilst the container is running: `docker exec -it qbittorrent /bin/bash`
+Shell access whilst the container is running: `docker exec -it openpyn-qbittorrent /bin/bash`
 
-To monitor the logs of the container in realtime: `docker logs -f qbittorrent`
+To monitor the logs of the container in realtime: `docker logs -f openpyn-qbittorrent`
 
 * container version number 
 
-`docker inspect -f '{{ index .Config.Labels "build_version" }}' qbittorrent`
+`docker inspect -f '{{ index .Config.Labels "build_version" }}' openpyn-qbittorrent`
 
 * image version number
 
-`docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/qbittorrent`
+`docker inspect -f '{{ index .Config.Labels "build_version" }}' omegagoth/openpyn-qbittorrent`
 
 ## Versions
 
-+ **25.09.18:** Use buildstage type build, bump qbitorrent to 4.1.3.
-+ **14.08.18:** Rebase to alpine 3.8, bump libtorrent to 1.1.9 and qbitorrent to 4.1.2.
-+ **08.06.18:** Bump qbitorrent to 4.1.1.
-+ **26.04.18:** Bump libtorrent to 1.1.7.
-+ **02.03.18:** Bump qbitorrent to 4.0.4 and libtorrent to 1.1.6.
-+ **02.01.18:** Deprecate cpu_core routine lack of scaling.
-+ **19.12.17:** Update to v4.0.3.
-+ **09.12.17:** Rebase to alpine 3.7.
-+ **01.12.17:** Update to v4.0.2.
-+ **27.11.17:** Update to v4 and use cpu_core routine to speed up builds.
-+ **16.09.17:** Bump to 3.3.16, Add WEBUI_PORT variable and notes to README to allow changing port of webui.
-+ **01.08.17:** Initial Release.
++ **13.10.18:** Initial Release.
