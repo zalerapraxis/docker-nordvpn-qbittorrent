@@ -17,6 +17,9 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# local files
+.env
+
 # =========================
 # Operating System Files
 # =========================
@@ -41,3 +44,14 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# ========================
+# IDE files
+# ========================
+# IntelliJ
+.idea/
+
+# volume used by the docker-compose
+config/
+data/
+downloads/

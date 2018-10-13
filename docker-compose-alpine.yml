@@ -1,0 +1,32 @@
+version: '3'
+services:
+  nordvpn-qbittorrent:
+    container_name: nordvpn-qbittorrent
+    image: omegagoth/nordvpn-qbittorrent:alpine
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    networks:
+      - testing
+    restart: always
+    ports:
+      - "8080:8080"
+    dns:
+      - 1.1.1.1
+      - 1.0.0.1
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./data:/data
+      - ./config:/config
+      - ./downloads:/downloads
+    environment:
+      - NORDVPN_USERNAME
+      - NORDVPN_PASSWORD
+      - OPENPYN_COUNTRY=nl
+      - PUID=1000
+      - PGID=1000
+
+networks:
+  testing:
+    driver: bridge

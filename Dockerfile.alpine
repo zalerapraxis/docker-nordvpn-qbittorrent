@@ -1,0 +1,27 @@
+FROM linuxserver/qbittorrent
+# MAINTAINER Omegagoth
+
+VOLUME /data
+VOLUME /config
+
+
+RUN apk --no-cache upgrade \
+    && apk --no-cache add \
+        bash \
+        curl \
+        expect \
+        git \
+        openvpn \
+        python3 \
+        sudo \
+        tar \
+        unzip \
+        wget \
+    && pip3 install --no-cache-dir --upgrade pip \
+    && echo "Installing openpyn" \
+    && pip3 install --no-cache-dir --upgrade git+https://github.com/Omegagoth/openpyn-nordvpn.git \
+    && rm -rf /tmp/* /var/tmp/* /var/cache/* /root/.cache/*
+
+ADD root/ /
+
+ADD openpyn/ /openpyn

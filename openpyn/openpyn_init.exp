@@ -1,0 +1,11 @@
+#!/usr/bin/expect -f
+
+spawn openpyn --init
+
+expect "Enter your username for NordVPN"
+send "$env(NORDVPN_USERNAME)\r"
+
+expect "Enter the password for NordVPN"
+send "$env(NORDVPN_PASSWORD)\r"
+
+expect "\[INFO\] To see usage options type"

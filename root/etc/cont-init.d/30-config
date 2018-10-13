@@ -9,6 +9,9 @@ mkdir -p \
 [[ ! -e /config/qBittorrent/qBittorrent.conf ]] && \
 	cp /defaults/qBittorrent.conf /config/qBittorrent/qBittorrent.conf
 
+# initialize openpyn
+/openpyn/openpyn_init.exp
+
 # permissions
 chown -R abc:abc \
 	/config
