@@ -2,7 +2,7 @@ version: '3'
 services:
   nordvpn-qbittorrent:
     container_name: nordvpn-qbittorrent
-    image: omegagoth/nordvpn-qbittorrent:alpine
+    image: omegagoth/nordvpn-qbittorrent
     cap_add:
       - NET_ADMIN
     devices:
