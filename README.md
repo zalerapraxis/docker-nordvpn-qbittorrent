@@ -6,6 +6,8 @@
 Based on the [LinuxServer.io][linuxserverurl] image for qbittorrent and [openpyn-nordvpn][openpynurl].
 This create a docker with a qBittorrent instance running with the web-ui and all the traffic double encrypted: passing through an OpenVPN server of NordVPN and using the Socks5 protocol of the same server.
 
+I have modified the original image by omegagoth to include ping, as the openpyn script needs ping to test latency to different servers. I have also switched over the install commands to Aptitude from APK as the linuxserver/qbittorrent image was rebased to Ubuntu Focal recently. 
+
 # omegagoth/nordvpn-qbittorrent
 [![](https://images.microbadger.com/badges/version/omegagoth/nordvpn-qbittorrent.svg)](https://microbadger.com/images/omegagoth/nordvpn-qbittorrent "Get your own version badge on microbadger.com")
 [![](https://images.microbadger.com/badges/image/omegagoth/nordvpn-qbittorrent.svg)](https://microbadger.com/images/omegagoth/nordvpn-qbittorrent "Get your own image badge on microbadger.com")
