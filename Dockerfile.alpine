@@ -1,3 +1,4 @@
+
 FROM linuxserver/qbittorrent
 # MAINTAINER Omegagoth
 
@@ -6,6 +7,7 @@ VOLUME /config
 
 
 RUN apt update \
+    && apt upgrade -y \
     && apt install -y \
         bash \
         curl \
@@ -21,7 +23,7 @@ RUN apt update \
         iputils-ping \
     && pip3 install --no-cache-dir --upgrade pip \
     && echo "Installing openpyn" \
-    && pip3 install --no-cache-dir --upgrade git+https://github.com/Omegagoth/openpyn-nordvpn.git \
+    && pip3 install --no-cache-dir --upgrade git+https://github.com/jotyGill/openpyn-nordvpn.git \
     && rm -rf /tmp/* /var/tmp/* /var/cache/* /root/.cache/*
 
 ADD root/ /
