@@ -13,7 +13,7 @@ expect -re {(?:Servers with Best Ping Are:.*\[')([a-z]{2}\d{2,})(?:',.*\])} {
 send_user "============== Killing the process to avoid the connection to the vpn"
 send \x03
 
-send_user "============= Set the proxy server of qBittorrent to $server.nordvpn.com\n"
-spawn /openpyn/setQBittorrentProxy.sh $env(XDG_CONFIG_HOME)/qBittorrent/qBittorrent.conf "$env(OPENPYN_SERVER).nordvpn.com" \
+# send_user "============= Set the proxy server of qBittorrent to $server.nordvpn.com\n"
+# spawn /openpyn/setQBittorrentProxy.sh $env(XDG_CONFIG_HOME)/qBittorrent/qBittorrent.conf "$env(OPENPYN_SERVER).nordvpn.com" \
     $env(NORDVPN_USERNAME) $env(NORDVPN_PASSWORD) 1080
 # we don't need to restart qbittorrent as it's not yet initialized
